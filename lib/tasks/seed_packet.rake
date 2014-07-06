@@ -1,21 +1,13 @@
-namespace :seed_packet do
+namespace :db do
   desc 'Reset the database and load seed data'
-  task reset_and_seed: ['db:reset', 'default']
+  task reset_and_seed: ['db:reset', 'db:seed']
 
   desc 'Remigrate the database and load seed data'
-  task remigrate_and_seed: ['db:migrate:reset', 'default']
+  task remigrate_and_seed: ['db:migrate:reset', 'db:seed']
 
   desc 'Provide a base load of randomly generated (but valid) data for development.'
-  task default: 'prepare' do
-    Rake::Task['seed_packet:seed'].invoke
-    Rake::Task['seed_packet:sample'].invoke
-  end
-
   task seed: 'prepare' do
     MyApp::Database::Seed.new(environment: Rails.env).seed
-  end
-
-  task sample: 'prepare' do
     MyApp::Database::Sample.new(environment: Rails.env).sample
   end
 
