@@ -13,5 +13,9 @@ class   Environment
   def samples_allowed?
     !%w{production test}.include?(environment)
   end
+
+  def scrubbing_allowed?
+    %w{development test}.include?(environment)
+  end
 end
 end

@@ -19,8 +19,14 @@ namespace :seed_packet do
     MyApp::Database::Sample.new(environment: Rails.env).sample
   end
 
+  desc 'Scrub data from a production database load'
+  task scrub: 'prepare' do
+    MyApp::Database::Scrub.new(environment: Rails.env).scrub
+  end
+
   task prepare: :environment do
     require File.expand_path('../../../../db/seed.rb',   __FILE__)
     require File.expand_path('../../../../db/sample.rb', __FILE__)
+    require File.expand_path('../../../../db/scrub.rb',  __FILE__)
   end
 end

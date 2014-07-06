@@ -23,6 +23,12 @@ module SeedPacket
     end
   end
 
+  def scrub
+    if environment.scrubbing_allowed?
+      yield
+    end
+  end
+
   private
 
   def sow_seeds(factory, options = {})
