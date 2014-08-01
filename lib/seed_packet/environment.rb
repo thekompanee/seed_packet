@@ -3,7 +3,7 @@ class   Environment
   attr_accessor :environment
 
   def initialize(environment)
-    self.environment = environment
+    self.environment = environment.to_s
   end
 
   def seeding_allowed?
