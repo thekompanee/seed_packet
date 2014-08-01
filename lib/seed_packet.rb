@@ -8,7 +8,10 @@ module SeedPacket
 
   def initialize(options = {})
     self.environment   = options.key?(:environment) ? Environment.new(environment) : nil
-    self.factory_class = Object.const_get(options.fetch(:factory_class, 'FactoryGirl'))
+
+    if environment.samples_allowed?
+      self.factory_class = Object.const_get(options.fetch(:factory_class, 'FactoryGirl'))
+    end
   end
 
   def seed
