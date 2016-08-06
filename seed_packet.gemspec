@@ -23,4 +23,6 @@ Gem::Specification.new do |spec|
   spec.files            = Dir['{app,config,db,lib}/**/*'] + %w{Rakefile README.md}
   spec.test_files       = Dir['{test,spec,features}/**/*']
   spec.require_paths    = ['lib']
+
+  spec.add_development_dependency 'rspec', ["~> 3.5"]
 end
