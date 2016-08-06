@@ -56,7 +56,7 @@ module SeedPacket
       item_class_name = sample_items.first.class.name
       log_message = "%4s %s Created %s" % [count, item_class_name.underscore.titleize.pluralize, additional_message]
 
-      puts "#{' ' * 256}\r#{log_message}\r"
+      print "#{' ' * 256}\r#{log_message}\r"
 
       sample_items
     end
