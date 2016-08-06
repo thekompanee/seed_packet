@@ -7,7 +7,7 @@ module SeedPacket
                 :factory_class
 
   def initialize(options = {})
-    self.environment   = options.key?(:environment) ? Environment.new(environment) : nil
+    self.environment = options.key?(:environment) ? Environment.new(environment) : nil
 
     if environment.samples_allowed?
       self.factory_class = Object.const_get(options.fetch(:factory_class, 'FactoryGirl'))
@@ -15,21 +15,15 @@ module SeedPacket
   end
 
   def seed
-    if environment.seeding_allowed?
-      yield
-    end
+    yield if environment.seeding_allowed?
   end
 
   def sample
-    if environment.samples_allowed?
-      yield
-    end
+    yield if environment.samples_allowed?
   end
 
   def scrub
-    if environment.scrubbing_allowed?
-      yield
-    end
+    yield if environment.scrubbing_allowed?
   end
 
   private
@@ -54,7 +48,11 @@ module SeedPacket
       end
 
       item_class_name = sample_items.first.class.name
-      log_message = "%4s %s Created %s" % [count, item_class_name.underscore.titleize.pluralize, additional_message]
+      log_message = '%4s %s Created %s' % [
+                                            count,
+                                            item_class_name.underscore.titleize.pluralize,
+                                            additional_message,
+                                          ]
 
       print "#{' ' * 256}\r#{log_message}\r"
 
