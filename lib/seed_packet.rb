@@ -39,6 +39,8 @@ module SeedPacket
       display_items       = options.fetch(:display_items, false)
       count               = options.fetch(:count,         rand(20))
       overridden_values   = options.fetch(:values,        {})
+      additional_message  = options.fetch(:message,       '')
+
       sample_factory_name = "#{factory}_sample"
       sample_items        = factory_class.create_list(sample_factory_name,
                                                       count,
@@ -52,7 +54,9 @@ module SeedPacket
       end
 
       item_class_name = sample_items.first.class.name
-      puts "%4s %s Created" % [count, item_class_name.underscore.titleize.pluralize]
+      log_message = "%4s %s Created %s" % [count, item_class_name.underscore.titleize.pluralize, additional_message]
+
+      puts "#{' ' * 256}\r#{log_message}\r"
 
       sample_items
     end
