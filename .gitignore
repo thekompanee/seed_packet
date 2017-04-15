@@ -1,6 +1,9 @@
 # Vendored Dependencies
-node_modules
 bower_components
+node_modules
+site/web/app/mu-plugins
+site/web/app/plugins
+site/web/wp
 vendor
 
 # OS Files
@@ -8,71 +11,150 @@ vendor
 Thumbs.db
 
 # Testing Files
-rerun.txt
-pickle-email-*.html
+*.gemfile.lock
 capybara*
+pickle-email-*.html
 public/uploads
-public/assets/src
+rerun.txt
+site/web/app/uploads
 test/data
 
 # Cache Files
+*.tfstate
+.byebug_history
+.divshot-cache
+.rake_tasks
 .sass-cache
+.yardoc
+/variables.tf.json
+_yardoc
+disk_image_for_*.json
+disk_image_settings.json
+lambdas/*.js
+lambdas/*.py
+lambdas/*.zip
+packer_cache
 public/system
+site/web/app/upgrade
 spec/reports
 tags
-.rake_tasks
-.yardoc
-_yardoc
+terraform.tfvars
+tmtags
+variables.sls
 
 # Local Compiled Files
+**/cordova/platforms/android/CordovaLib/ant-build
+**/cordova/platforms/android/CordovaLib/ant-gen
+**/cordova/platforms/android/CordovaLib/bin
+**/cordova/platforms/android/CordovaLib/gen
+**/cordova/platforms/android/ant-build
+**/cordova/platforms/android/ant-gen
+**/cordova/platforms/android/assets/www
+**/cordova/platforms/android/bin
+**/cordova/platforms/android/gen
+**/cordova/platforms/browser/build
+**/cordova/platforms/browser/www
+**/cordova/platforms/ios/build/
+**/cordova/platforms/ios/www/
+**/cordova/platforms/wp8/*.csproj.user
+**/cordova/platforms/wp8/*.suo
+**/cordova/platforms/wp8/.staging
+**/cordova/platforms/wp8/bin
+**/cordova/platforms/wp8/obj
+**/cordova/platforms/wp8/www
 **/public/stylesheets/*.css
+*.a
+*.o
 *.rbc
 *.so
-*.o
-*.a
+*.xcuserdatad
+build
 coverage
 coverage.data
-rdoc
-docs
 dist
+docs
+files/scripts/**/*.js
+files/scripts/**/*.py
+files/scripts/**/*.zip
+out
+pillars/files
 pkg
+rdoc
+target
 
 # Local Configuration Files
-secrets.yml
-database.yml
-config.yml
-.env.yml
-.env
-.bundle
-.foreman
-.idea
-.rspec
-.rvmrc
-.railsrc
-.bundle
-nbproject
-*.project
+!.env.example
+**/cordova/platforms/android/CordovaLib/local.properties
+**/cordova/platforms/android/local.properties
 *.bundle
+*.iml
+*.ipr
+*.iws
+*.project
+*.sublime-project
+*.sublime-workspace
 *.tmproj
+.Rhistory
+.bundle
 .chamber.pem
 .chamber.pem.enc
+.env
+.env.yml
+.foreman
+.htaccess
+.idea
+.idea_modules
+.powenv
+.powrc
+.pryrc
+.railsrc
+.rspec
+.rvmrc
+.secrets
+.shellwreck.sh
+.terraform
 Gemfile.local
+Procfile.local
+atlassian-ide-plugin.xml
+com_crashlytics_export_strings.xml
+config.yml
+config/database.yml
+config/secrets.yml
+crashlytics-build.properties
+crashlytics.properties
+nbproject
 
 # Temporary files
-log
-tmp
-*.swp
-*.swo
-*.orig
-*.log*
+*.backup
+*.bak
+*.lck
 *.lock
+*.log*
+*.old
+*.orig
 *.sqlite3
 *.sqlite3-journal
+*.swo
+*.swp
+*~
+.\#*
+\#*
+db-sync
 dump.rdb
+log
+solr/*
+sql-dump-*.sql
+tmp
 
-# Always keep Gemfile.lock
+# Vagrant
+.vagrant
+
+# Always keep lock files
+!yarn.lock
 !Gemfile.lock
+!Cargo.lock
+!composer.lock
 
 # Always Version .keep and .gitkeep files
-!.keep
 !.gitkeep
+!.keep
