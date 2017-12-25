@@ -10,7 +10,7 @@ module SeedPacket
     self.environment = options.key?(:environment) ? Environment.new(environment) : nil
 
     if environment.samples_allowed?
-      self.factory_class = Object.const_get(options.fetch(:factory_class, 'FactoryGirl'))
+      self.factory_class = Object.const_get(options.fetch(:factory_class, 'FactoryBot'))
     end
   end
 
