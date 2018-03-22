@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    seed_packet (0.0.8)
+    seed_packet (0.1.0)
 
 GEM
   remote: https://rubygems.org/
