@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module  SeedPacket
 class   Environment
   attr_accessor :environment
@@ -11,7 +13,7 @@ class   Environment
   end
 
   def samples_allowed?
-    !%w{production test}.include?(environment)
+    %w{production test}.exclude?(environment)
   end
 
   def scrubbing_allowed?

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :db do
   desc 'Reset the database and load seed data'
   task reset_and_seed: ['db:reset', 'db:seed']
@@ -17,8 +19,8 @@ namespace :db do
   end
 
   task prepare: :environment do
-    require File.expand_path('../../../../db/seed.rb',   __FILE__)
-    require File.expand_path('../../../../db/sample.rb', __FILE__)
-    require File.expand_path('../../../../db/scrub.rb',  __FILE__)
+    require File.expand_path('../../../db/seed.rb',   __dir__)
+    require File.expand_path('../../../db/sample.rb', __dir__)
+    require File.expand_path('../../../db/scrub.rb',  __dir__)
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'pp'
 require 'seed_packet/version'
 require 'seed_packet/environment'
@@ -6,12 +8,10 @@ module SeedPacket
   attr_accessor :environment,
                 :factory_class
 
-  def initialize(options = {})
-    self.environment = options.key?(:environment) ? Environment.new(environment) : nil
+  def initialize(environment: nil, factory_class: 'FactoryBot')
+    self.environment = environment ? Environment.new(environment) : nil
 
-    if environment.samples_allowed?
-      self.factory_class = Object.const_get(options.fetch(:factory_class, 'FactoryBot'))
-    end
+    self.factory_class = Object.const_get(factory_class) if environment.samples_allowed?
   end
 
   def seed
@@ -28,37 +28,42 @@ module SeedPacket
 
   private
 
-  def sow_seeds(factory, options = {})
-    if environment.seeding_allowed?
-      display_items       = options.fetch(:display_items, false)
-      count               = options.fetch(:count,         rand(20))
-      traits              = options.fetch(:traits,        [])
-      overridden_values   = options.fetch(:values,        {})
-      additional_message  = options.fetch(:message,       '')
+  # rubocop:disable Metrics/ParameterLists, Style/FormatStringToken
+  def sow_seeds(factory,
+                display_items: false,
+                count:         rand(20),
+                traits:        [],
+                values:        {},
+                message:       '')
 
-      sample_factory_name = "#{factory}_sample"
-      sample_items        = factory_class.create_list(sample_factory_name,
-                                                      count,
-                                                      *traits,
-                                                      overridden_values)
+    return unless environment.seeding_allowed?
 
-      if display_items
-        sample_items.each do |item|
-          pp item.attributes
-          puts
-        end
+    sample_factory_name = "#{factory}_sample"
+    sample_items        = factory_class.create_list(sample_factory_name,
+                                                    count,
+                                                    *traits,
+                                                    values)
+
+    if display_items
+      sample_items.each do |item|
+        pp item.attributes
+        puts
       end
-
-      item_class_name = sample_items.first.class.name
-      log_message = '%4s %s Created %s' % [
-                                            count,
-                                            item_class_name.underscore.titleize.pluralize,
-                                            additional_message,
-                                          ]
-
-      print "#{' ' * 256}\r#{log_message}\r"
-
-      sample_items
     end
+
+    item_class_name = sample_items.first.class.name
+    log_message     = '%4s %s Created %s' % [
+                                              count,
+                                              item_class_name
+                                                .underscore
+                                                .titleize
+                                                .pluralize,
+                                              message,
+                                            ]
+
+    print "#{' ' * 256}\r#{log_message}\r"
+
+    sample_items
   end
+  # rubocop:enable Metrics/ParameterLists, Style/FormatStringToken
 end
