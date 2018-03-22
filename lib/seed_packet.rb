@@ -32,12 +32,14 @@ module SeedPacket
     if environment.seeding_allowed?
       display_items       = options.fetch(:display_items, false)
       count               = options.fetch(:count,         rand(20))
+      traits              = options.fetch(:traits,        [])
       overridden_values   = options.fetch(:values,        {})
       additional_message  = options.fetch(:message,       '')
 
       sample_factory_name = "#{factory}_sample"
       sample_items        = factory_class.create_list(sample_factory_name,
                                                       count,
+                                                      *traits,
                                                       overridden_values)
 
       if display_items
