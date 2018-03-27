@@ -8,11 +8,13 @@ module SeedPacket
   attr_accessor :environment,
                 :factory_class
 
+  # rubocop:disable Metrics/LineLength
   def initialize(environment: nil, factory_class: 'FactoryBot')
     self.environment = environment ? Environment.new(environment) : nil
 
-    self.factory_class = Object.const_get(factory_class) if environment.samples_allowed?
+    self.factory_class = Object.const_get(factory_class) if self.environment.samples_allowed?
   end
+  # rubocop:enable Metrics/LineLength
 
   def seed
     yield if environment.seeding_allowed?
