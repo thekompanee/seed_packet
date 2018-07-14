@@ -63,7 +63,7 @@ module SeedPacket
                                               message,
                                             ]
 
-    print "#{' ' * 256}\r#{log_message}\r"
+    print "#{' ' * 100}\r#{log_message}\r"
 
     sample_items
   end
